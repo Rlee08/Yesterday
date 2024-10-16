@@ -1,7 +1,9 @@
 import { useSync } from '@tldraw/sync'
-import { Tldraw } from 'tldraw'
+import { DefaultCanvas, Tldraw } from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
+import { useLayoutEffect } from 'react'
+import { CustomRenderer } from './CustomRenderer'
 
 // Where is our worker located? Configure this in `vite.config.ts`
 const WORKER_URL = process.env.TLDRAW_WORKER_URL
@@ -18,6 +20,17 @@ function App() {
 		assets: multiplayerAssetStore,
 	})
 
+	useLayoutEffect(() => {
+		// Hide the regular shapes layer using CSS.
+		const script = document.createElement('style')
+		if (!script) return
+		script.innerHTML = `.tl-shapes { display: none; }`
+		document.body.appendChild(script)
+		return () => {
+			script.remove()
+		}
+	})
+
 	return (
 		<div style={{ position: 'fixed', inset: 0 }}>
 			<Tldraw
@@ -27,6 +40,15 @@ function App() {
 				onMount={(editor) => {
 					// when the editor is ready, we need to register our bookmark unfurling service
 					editor.registerExternalAssetHandler('url', getBookmarkPreview)
+				}}
+				// persistenceKey="example"
+				components={{
+					// We're replacing the Background component with our custom renderer
+					Background: CustomRenderer,
+					// Even though we're hiding the shapes, we'll still do a bunch of work
+					// in react to figure out which shapes to create. In reality, you might
+					// want to set the Canvas component to null and render it all yourself.
+					Canvas: DefaultCanvas,
 				}}
 			/>
 		</div>
