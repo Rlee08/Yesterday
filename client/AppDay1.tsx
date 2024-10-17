@@ -2,7 +2,7 @@ import { useSync } from '@tldraw/sync'
 import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType} from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
-// import { useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 // import { CustomRenderer } from './CustomRenderer'
 import './index.css'
 // import React from 'react'
@@ -103,27 +103,6 @@ function Day1Editor() {
 			store={store}
 			onMount={(editor) => {
 				editor.registerExternalAssetHandler('url', getBookmarkPreview)
-				editor.sideEffects.registerBeforeChangeHandler('shape', (prev, next) => {
-					// Type guard function to check if shape has specific properties
-					function hasTransformProps(shape: TLShape): shape is TLShape & { props: { w?: number, h?: number } } {
-						return 'props' in shape && typeof shape.props === 'object' && shape.props !== null;
-					}
-
-					// Check if any transformation properties have changed
-					if (
-						next.x !== prev.x ||
-						next.y !== prev.y ||
-						next.rotation !== prev.rotation ||
-						(hasTransformProps(prev) && hasTransformProps(next) &&
-						((prev.props.w !== undefined && next.props.w !== undefined && prev.props.w !== next.props.w) ||
-						(prev.props.h !== undefined && next.props.h !== undefined && prev.props.h !== next.props.h)))
-					) {
-						// If any of these properties changed, return the previous state
-						return prev
-					}
-					// If no transformation properties changed, allow the change
-					return next
-				})
 
 				// Set the default tool to 'hand'
 				editor.setCurrentTool('hand')
@@ -144,6 +123,7 @@ function Day1Editor() {
 
 const CustomUi = track(() => {
 	const editor = useEditor()
+
 	const handleToolChange = (toolId: string) => {
 		if (editor.getCurrentToolId() === toolId) {
 		  // If the clicked tool is already active, switch to the Hand tool
@@ -153,6 +133,23 @@ const CustomUi = track(() => {
 		  editor.setCurrentTool(toolId)
 		}
 	  }
+
+	  useEffect(() => {
+		const handleKeyUp = (e: KeyboardEvent) => {
+			switch (e.key) {
+				case 'Escape': {
+					editor.setCurrentTool('hand')
+					break
+				}
+			}
+		}
+
+		window.addEventListener('keyup', handleKeyUp)
+		return () => {
+			window.removeEventListener('keyup', handleKeyUp)
+		}
+	})
+	
 
 	return (
 		<div className="custom-layout">
