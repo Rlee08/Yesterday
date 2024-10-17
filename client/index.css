@@ -126,6 +126,10 @@ body {
 	background-color: #f0f0f0;
 }
 
+/* New style for hover state of active buttons */
+.custom-button[data-isactive='true']:hover {
+    background-color: #333333; /* Dark gray */
+}
 .custom-button span:not(.material-icons) {
 	margin-left: 4px;
 }
