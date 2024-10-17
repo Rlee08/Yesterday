@@ -11,7 +11,7 @@ const WORKER_URL = process.env.TLDRAW_WORKER_URL
 // In this example, the room ID is hard-coded. You can set this however you like though.
 const roomId = 'test-room2'
 
-function App() {
+function CurrentEditor() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
@@ -44,4 +44,4 @@ function App() {
 	)
 }
 
-export default App
+export default CurrentEditor
