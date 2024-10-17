@@ -1,9 +1,11 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw, TLCameraOptions } from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track } from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 // import { useLayoutEffect } from 'react'
 import { CustomRenderer } from './CustomRenderer'
+import './index.css'
+// import React from 'react'
 
 // Where is our worker located? Configure this in `vite.config.ts`
 const WORKER_URL = process.env.TLDRAW_WORKER_URL
@@ -45,27 +47,46 @@ function Day1Editor() {
 	return (
 		<div style={{ position: 'fixed', inset: 0 }}>
 			<Tldraw
-				// we can pass the connected store into the Tldraw component which will handle
-				// loading states & enable multiplayer UX like cursors & a presence menu
-				store={store}
-				onMount={(editor) => {
-					// when the editor is ready, we need to register our bookmark unfurling service
-					editor.registerExternalAssetHandler('url', getBookmarkPreview)
-				}}
-				
-				// persistenceKey="example"
-				components={{
-					// We're replacing the Background component with our custom renderer
-					Background: CustomRenderer,
-					// Even though we're hiding the shapes, we'll still do a bunch of work
-					// in react to figure out which shapes to create. In reality, you might
-					// want to set the Canvas component to null and render it all yourself.
-					Canvas: DefaultCanvas,
-				}}
-				cameraOptions={CAMERA_OPTIONS}
-			/>
+			store={store}
+			onMount={(editor) => {
+				editor.registerExternalAssetHandler('url', getBookmarkPreview)
+			}}
+			components={{
+				Background: CustomRenderer,
+				Canvas: DefaultCanvas,
+			}}
+			cameraOptions={CAMERA_OPTIONS}
+			hideUi
+			>
+			<CustomUi />
+			</Tldraw>
 		</div>
 	)
 }
+
+const CustomUi = track(() => {
+	const editor = useEditor()
+
+	return (
+		<div className="custom-layout">
+			<div className="custom-toolbar">
+				<button
+					className="custom-button"
+					data-isactive={editor.getCurrentToolId() === 'draw'}
+					onClick={() => editor.setCurrentTool('draw')}
+				>
+					Pencil
+				</button>
+				<button
+					className="custom-button"
+					data-isactive={editor.getCurrentToolId() === 'text'}
+					onClick={() => editor.setCurrentTool('text')}
+				>
+					Text
+				</button>
+			</div>
+		</div>
+	)
+})
 
 export default Day1Editor
