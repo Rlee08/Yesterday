@@ -9,7 +9,7 @@ import { CustomRenderer } from './CustomRenderer'
 const WORKER_URL = process.env.TLDRAW_WORKER_URL
 
 // In this example, the room ID is hard-coded. You can set this however you like though.
-const roomId = 'test-room2'
+// const roomId = 'test-room2'
 
 const CAMERA_OPTIONS: TLCameraOptions = {
 	isLocked: false,  // Allow panning
@@ -32,11 +32,11 @@ const CAMERA_OPTIONS: TLCameraOptions = {
 	}
 
 
-function CurrentEditor() {
+function Day1Editor() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
-		uri: `${WORKER_URL}/connect/${roomId}`,
+		uri: `${WORKER_URL}/connect/test-room2`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
@@ -68,4 +68,4 @@ function CurrentEditor() {
 	)
 }
 
-export default CurrentEditor
+export default Day1Editor

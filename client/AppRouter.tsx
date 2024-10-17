@@ -1,7 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom'
-import CurrentEditor from './App'
-import Display from './display'
+import Day1Editor from './AppDay1'
+import Display from './Display'
+import Master from './MasterEditor'
 // import Home from './Home'
 
 const AppRouter: React.FC = () => {
@@ -9,8 +10,9 @@ const AppRouter: React.FC = () => {
     <Router>
         <Routes>
           <Route path="/" element={<Display />} />
-          <Route path="/App" element={<CurrentEditor />} />
+          <Route path="/Day1" element={<Day1Editor />} />
           <Route path="/Display" element={<Display />} />
+          <Route path="/Master" element={<Master />} />
         </Routes>
     </Router>
   )
