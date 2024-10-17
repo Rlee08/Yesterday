@@ -1,9 +1,9 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType} from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType, Vec} from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 // import { useLayoutEffect } from 'react'
-import { CustomRenderer } from './CustomRenderer'
+// import { CustomRenderer } from './CustomRenderer'
 import './index.css'
 // import React from 'react'
 
@@ -14,24 +14,25 @@ const WORKER_URL = process.env.TLDRAW_WORKER_URL
 // const roomId = 'test-room2'
 
 const CAMERA_OPTIONS: TLCameraOptions = {
-	isLocked: false,  // Allow panning
-	wheelBehavior: 'none',  // Disable wheel zooming
-	zoomSpeed: 0,  // Disable zooming
+	isLocked: false,
+	wheelBehavior: 'pan',
+	zoomSpeed: 1,
 	zoomSteps: [0.1, 0.25, 0.5, 1, 2, 4, 8],
-	panSpeed: 1,  // Enable panning at normal speed
-	// constraints: {
-	// //   initialZoom: '100%',
-	// //   baseZoom: "100",
-	// //   minZoom: 1,
-	// //   maxZoom: 1,  // Lock zoom at 100%
-	//   bounds: {
-	// 	x: 0,
-	// 	y: 0,
-	// 	w: 1600,
-	// 	h: 900,
-	//   },  // Allow panning in all directions
-	//   behavior: { x: 'free', y: 'free' },  // Allow free panning
-	}
+	panSpeed: 1,
+	constraints: {
+		initialZoom: 'default',
+		baseZoom: 'default',
+		bounds: {
+			x: 0,
+			y: 0,
+			w: 1600,
+			h: 900,
+		},
+		behavior: { x: 'contain', y: 'contain' },
+		padding: { x: 0, y: 0 },
+		origin: { x: 0.5, y: 0.5 },
+	},
+}
 
 // Add this new overrides object
 const overrides: TLUiOverrides = {
@@ -42,6 +43,49 @@ const overrides: TLUiOverrides = {
 	  }
 	},
   }
+
+  const BoundsDisplay = track(() => {
+	const editor = useEditor()
+	const cameraOptions = editor.getCameraOptions()
+
+	if (!cameraOptions.constraints) return null
+
+	const {
+		constraints: {
+			bounds: { x, y, w, h },
+		},
+	} = cameraOptions
+
+	// const d = Vec.ToAngle({ x: w, y: h }) * (180 / Math.PI)
+	// const colB = '#00000002'
+	// const colA = '#0000001F'
+
+	return (
+		<div
+			style={{
+				position: 'absolute',
+				top: y,
+				left: x,
+				width: w,
+				height: h,
+				border: '1px dashed var(--color-text)',
+			}}
+		>
+			<div
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					width: '100%',
+					height: '100%',
+					backgroundImage: `url(./testBG.jpeg)`,
+					// backgroundSize: 'cover',
+					backgroundPosition: 'center',
+				}}
+			></div>
+		</div>
+	)
+})
 
 function Day1Editor() {
 	// Create a store connected to multiplayer.
@@ -85,8 +129,8 @@ function Day1Editor() {
 				editor.setCurrentTool('hand')
 			}}
 			components={{
-				Background: CustomRenderer,
 				Canvas: DefaultCanvas,
+				OnTheCanvas: BoundsDisplay,
 			}}
 			cameraOptions={CAMERA_OPTIONS}
 			hideUi
@@ -109,7 +153,7 @@ const CustomUi = track(() => {
 		  editor.setCurrentTool(toolId)
 		}
 	  }
-	  
+
 	return (
 		<div className="custom-layout">
 		  <div className="custom-toolbar">
