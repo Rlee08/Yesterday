@@ -75,14 +75,16 @@ const CustomUi = track(() => {
 					data-isactive={editor.getCurrentToolId() === 'draw'}
 					onClick={() => editor.setCurrentTool('draw')}
 				>
-					Pencil
+					<span className="material-icons">edit</span>
+					<span className="button-label">Pencil</span>
 				</button>
 				<button
 					className="custom-button"
 					data-isactive={editor.getCurrentToolId() === 'text'}
 					onClick={() => editor.setCurrentTool('text')}
 				>
-					Text
+					<span className="material-icons">title</span>
+					<span className="button-label">Text</span>
 				</button>
 			</div>
 		</div>
