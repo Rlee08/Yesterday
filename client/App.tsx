@@ -2,7 +2,7 @@ import { useSync } from '@tldraw/sync'
 import { DefaultCanvas, Tldraw } from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
-import { useLayoutEffect } from 'react'
+// import { useLayoutEffect } from 'react'
 import { CustomRenderer } from './CustomRenderer'
 
 // Where is our worker located? Configure this in `vite.config.ts`
@@ -18,17 +18,6 @@ function App() {
 		uri: `${WORKER_URL}/connect/${roomId}`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
-	})
-
-	useLayoutEffect(() => {
-		// Hide the regular shapes layer using CSS.
-		const script = document.createElement('style')
-		if (!script) return
-		script.innerHTML = `.tl-shapes { display: none; }`
-		document.body.appendChild(script)
-		return () => {
-			script.remove()
-		}
 	})
 
 	return (
