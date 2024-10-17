@@ -1,5 +1,5 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType} from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLUiOverrides, TLUiToolsContextType} from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 import { useEffect } from 'react'
@@ -44,21 +44,21 @@ const overrides: TLUiOverrides = {
 	},
   }
 
-  const BoundsDisplay = track(() => {
-	const editor = useEditor()
-	const cameraOptions = editor.getCameraOptions()
+const BoundsDisplay = track(() => {
+const editor = useEditor()
+const cameraOptions = editor.getCameraOptions()
 
-	if (!cameraOptions.constraints) return null
+if (!cameraOptions.constraints) return null
 
-	const {
-		constraints: {
-			bounds: { x, y, w, h },
-		},
-	} = cameraOptions
+const {
+	constraints: {
+		bounds: { x, y, w, h },
+	},
+} = cameraOptions
 
-	// const d = Vec.ToAngle({ x: w, y: h }) * (180 / Math.PI)
-	// const colB = '#00000002'
-	// const colA = '#0000001F'
+// const d = Vec.ToAngle({ x: w, y: h }) * (180 / Math.PI)
+// const colB = '#00000002'
+// const colA = '#0000001F'
 
 	return (
 		<div
