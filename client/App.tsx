@@ -1,5 +1,5 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw } from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions } from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 // import { useLayoutEffect } from 'react'
@@ -10,6 +10,27 @@ const WORKER_URL = process.env.TLDRAW_WORKER_URL
 
 // In this example, the room ID is hard-coded. You can set this however you like though.
 const roomId = 'test-room2'
+
+const CAMERA_OPTIONS: TLCameraOptions = {
+	isLocked: false,  // Allow panning
+	wheelBehavior: 'none',  // Disable wheel zooming
+	zoomSpeed: 0,  // Disable zooming
+	zoomSteps: [0.1, 0.25, 0.5, 1, 2, 4, 8],
+	panSpeed: 1,  // Enable panning at normal speed
+	// constraints: {
+	// //   initialZoom: '100%',
+	// //   baseZoom: "100",
+	// //   minZoom: 1,
+	// //   maxZoom: 1,  // Lock zoom at 100%
+	//   bounds: {
+	// 	x: 0,
+	// 	y: 0,
+	// 	w: 1600,
+	// 	h: 900,
+	//   },  // Allow panning in all directions
+	//   behavior: { x: 'free', y: 'free' },  // Allow free panning
+	}
+
 
 function CurrentEditor() {
 	// Create a store connected to multiplayer.
@@ -31,6 +52,7 @@ function CurrentEditor() {
 					// when the editor is ready, we need to register our bookmark unfurling service
 					editor.registerExternalAssetHandler('url', getBookmarkPreview)
 				}}
+				
 				// persistenceKey="example"
 				components={{
 					// We're replacing the Background component with our custom renderer
@@ -40,6 +62,7 @@ function CurrentEditor() {
 					// want to set the Canvas component to null and render it all yourself.
 					Canvas: DefaultCanvas,
 				}}
+				cameraOptions={CAMERA_OPTIONS}
 			/>
 		</div>
 	)
