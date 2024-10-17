@@ -35,14 +35,38 @@ export function CustomRenderer() {
 		ctx.clearRect(0, 0, canvasW, canvasH)
 
 		// Draw background
-		const pattern = ctx.createPattern(backgroundImage, 'repeat')
+		const pattern = ctx.createPattern(backgroundImage, 'no-repeat')
 		if (pattern) {
 			ctx.save()
+
+			// Calculate the center offset
+			const viewportWidth = canvasW / (camera.z * devicePixelRatio)
+			const viewportHeight = canvasH / (camera.z * devicePixelRatio)
+			const imageWidth = backgroundImage.width
+			const imageHeight = backgroundImage.height
+			const horizontalOffset = (viewportWidth * camera.z - imageWidth) / 2
+			const verticalOffset = (viewportHeight * camera.z - imageHeight) / 2
+
+			// Apply transformations
 			ctx.scale(camera.z * devicePixelRatio, camera.z * devicePixelRatio)
 			ctx.translate(camera.x, camera.y)
-			pattern.setTransform(new DOMMatrix().scale(1 / camera.z))
+
+			// Set up the pattern transform
+			const patternTransform = new DOMMatrix()
+				.translateSelf(
+					horizontalOffset / camera.z,
+					verticalOffset / camera.z
+				)
+				.scaleSelf(1 / camera.z)
+			pattern.setTransform(patternTransform)
+
 			ctx.fillStyle = pattern
-			ctx.fillRect(-camera.x, -camera.y, canvasW / (camera.z * devicePixelRatio), canvasH / (camera.z * devicePixelRatio))
+			ctx.fillRect(
+				-camera.x,
+				-camera.y,
+				canvasW / (camera.z * devicePixelRatio),
+				canvasH / (camera.z * devicePixelRatio)
+			)
 			ctx.restore()
 		}
 

@@ -1,7 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet');
 @import url('tldraw/tldraw.css');
 
 body {
 	font-family: 'Inter', sans-serif;
 	overscroll-behavior: none;
-}
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: black;
+  }
+  
+  .display-backdrop {
+	background-color: black;
+	padding: 32px;
+	height: 100vh;
+	color: white;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .editors-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+	gap: 100px;
+	flex-grow: 1;
+  }
+  
+  .editor-container {
+	background-color: white;
+	border-radius: 8px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .editor {
+	width: 100%;
+	height: 100%;
+  }
+  
+  .editor-container h1 {
+	font-family: 'DM Mono', sans-serif;
+	color: black;
+	margin: 0;
+	padding: 16px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 2em;
+  }

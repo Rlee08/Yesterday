@@ -19,6 +19,7 @@ function CurrentEditor() {
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
+	
 
 	return (
 		<div style={{ position: 'fixed', inset: 0 }}>
