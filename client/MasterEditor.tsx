@@ -1,5 +1,5 @@
-import { createContext, useCallback, useState, useContext } from 'react'
-import { Editor, Tldraw } from 'tldraw'
+import { createContext, useCallback, useState, useContext, useEffect } from 'react'
+import { Editor, Tldraw, useEditor } from 'tldraw'
 import { useSync } from '@tldraw/sync'
 import 'tldraw/tldraw.css'
 import './index.css'
@@ -85,6 +85,44 @@ function Editor1() {
     assets: multiplayerAssetStore,
   })
 
+  const CustomUi = () => {
+    const editor = useEditor()
+
+    useEffect(() => {
+        const handleKeyUp = (e: KeyboardEvent) => {
+            switch (e.key) {
+                case 'Delete':
+                case 'Backspace': {
+                    editor.deleteShapes(editor.getSelectedShapeIds())
+                    break
+                }
+                case 'v': {
+                    editor.setCurrentTool('select')
+                    break
+                }
+                case 'e': {
+                    editor.setCurrentTool('eraser')
+                    break
+                }
+                case 'x':
+                case 'p':
+                case 'b':
+                case 'd': {
+                    editor.setCurrentTool('draw')
+                    break
+                }
+            }
+        }
+
+        window.addEventListener('keyup', handleKeyUp)
+        return () => {
+            window.removeEventListener('keyup', handleKeyUp)
+        }
+    }, [editor])
+
+    return null // or return any UI elements you want to add
+  }
+
 	return (
 		<div>
 			<div
@@ -105,13 +143,17 @@ function Editor1() {
           }}
           autoFocus={false}
           className="editor"
-				/>
+				>
+			<CustomUi />
+			</Tldraw>
 			</div>
       <div>
         <h1>Day 1</h1>
         </div>
 		</div>
 	)
+
+
 }
 
 /* 

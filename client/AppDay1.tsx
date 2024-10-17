@@ -1,5 +1,5 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType, Vec} from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLShape, TLUiOverrides, TLUiToolsContextType} from 'tldraw'
 import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 // import { useLayoutEffect } from 'react'
@@ -17,7 +17,7 @@ const CAMERA_OPTIONS: TLCameraOptions = {
 	isLocked: false,
 	wheelBehavior: 'pan',
 	zoomSpeed: 1,
-	zoomSteps: [0.1, 0.25, 0.5, 1, 2, 4, 8],
+	zoomSteps: [2, 4, 8],
 	panSpeed: 1,
 	constraints: {
 		initialZoom: 'default',
@@ -25,12 +25,12 @@ const CAMERA_OPTIONS: TLCameraOptions = {
 		bounds: {
 			x: 0,
 			y: 0,
-			w: 1600,
-			h: 900,
+			w: 1920,
+			h: 1080,
 		},
 		behavior: { x: 'contain', y: 'contain' },
 		padding: { x: 0, y: 0 },
-		origin: { x: 0.5, y: 0.5 },
+		origin: { x: .5, y: .5},
 	},
 }
 
@@ -68,18 +68,18 @@ const overrides: TLUiOverrides = {
 				left: x,
 				width: w,
 				height: h,
-				border: '1px dashed var(--color-text)',
+				// border: '1px dashed var(--color-text)',
 			}}
 		>
 			<div
 				style={{
 					position: 'absolute',
-					top: 0,
-					left: 0,
+					top: y,
+					left: x,
 					width: '100%',
 					height: '100%',
 					backgroundImage: `url(./testBG.jpeg)`,
-					// backgroundSize: 'cover',
+					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 				}}
 			></div>
