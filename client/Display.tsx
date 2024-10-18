@@ -11,7 +11,7 @@ import { CustomRenderer } from './CustomRenderer'
 const WORKER_URL = process.env.TLDRAW_WORKER_URL
 
 // In this example, the room ID is hard-coded. You can set this however you like though.
-const roomId = 'test-room2'
+// const roomId = 'test-room2'
 
 const focusedEditorContext = createContext(
 	{} as {
@@ -59,27 +59,6 @@ function EditorB() {
     uri: `${WORKER_URL}/connect/test-room2`,
     assets: multiplayerAssetStore,
   })
-
-  const CAMERA_OPTIONS: TLCameraOptions = {
-	isLocked: false,
-	wheelBehavior: 'pan',
-	zoomSpeed: 1,
-	zoomSteps: [2, 4, 8],
-	panSpeed: 1,
-	constraints: {
-		initialZoom: 'default',
-		baseZoom: 'default',
-		bounds: {
-			x: 0,
-			y: 0,
-			w: 1920,
-			h: 1080,
-		},
-		behavior: { x: 'contain', y: 'contain' },
-		padding: { x: 0, y: 0 },
-		origin: { x: .5, y: .5},
-	},
-}
 
 	return (
 		<div className="editor-container">
