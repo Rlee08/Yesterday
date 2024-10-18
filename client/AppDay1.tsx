@@ -17,7 +17,7 @@ const CAMERA_OPTIONS: TLCameraOptions = {
 	isLocked: false,
 	wheelBehavior: 'pan',
 	zoomSpeed: 1,
-	zoomSteps: [2, 4, 8],
+	zoomSteps: [1, 2, 4, 8],
 	panSpeed: 1,
 	constraints: {
 		initialZoom: 'default',
@@ -25,8 +25,8 @@ const CAMERA_OPTIONS: TLCameraOptions = {
 		bounds: {
 			x: 0,
 			y: 0,
-			w: 1920,
-			h: 1080,
+			w: 3840,
+			h: 2160,
 		},
 		behavior: { x: 'contain', y: 'contain' },
 		padding: { x: 0, y: 0 },
@@ -42,7 +42,7 @@ const overrides: TLUiOverrides = {
 		hand: { ...tools.hand, kbd: 'Escape' },
 	  }
 	},
-  }
+  } 
 
 const BoundsDisplay = track(() => {
 const editor = useEditor()
@@ -78,7 +78,7 @@ const {
 					left: x,
 					width: '100%',
 					height: '100%',
-					backgroundImage: `url(./testBG.jpeg)`,
+					backgroundImage: `url(./day1.jpg)`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 				}}
@@ -106,6 +106,24 @@ function Day1Editor() {
 
 				// Set the default tool to 'hand'
 				editor.setCurrentTool('hand')
+
+				// // Register the before change handler
+				// editor.sideEffects.registerBeforeChangeHandler('shape', ( next) => {
+				// 	// Check if the shape is selected
+				// 	if (editor.getSelectedShapeIds().includes(next.id)) {
+				// 		// Set the current tool to 'hand'
+				// 		editor.setCurrentTool('hand')
+				// 	}
+				// 	// Always return the next state to allow the change
+				// 	return next
+				// })
+
+				// Add a change listener for selection changes
+				// editor.sideEffects.registerAfterChangeHandler('select', () => {
+				// 	if (editor.getSelectedShapeIds().length > 0) {
+				// 		editor.setCurrentTool('hand')
+				// 	}
+				// })
 			}}
 			components={{
 				Canvas: DefaultCanvas,

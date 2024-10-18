@@ -1,5 +1,5 @@
 import { createContext, useCallback, useState, useContext } from 'react'
-import { Editor, Tldraw } from 'tldraw'
+import { Editor, Tldraw, TLCameraOptions } from 'tldraw'
 import { useSync } from '@tldraw/sync'
 import 'tldraw/tldraw.css'
 import './index.css'
@@ -56,9 +56,30 @@ function EditorB() {
 
   // Create a store connected to multiplayer.
   const store = useSync({
-    uri: `${WORKER_URL}/connect/${roomId}`,
+    uri: `${WORKER_URL}/connect/test-room2`,
     assets: multiplayerAssetStore,
   })
+
+  const CAMERA_OPTIONS: TLCameraOptions = {
+	isLocked: false,
+	wheelBehavior: 'pan',
+	zoomSpeed: 1,
+	zoomSteps: [2, 4, 8],
+	panSpeed: 1,
+	constraints: {
+		initialZoom: 'default',
+		baseZoom: 'default',
+		bounds: {
+			x: 0,
+			y: 0,
+			w: 1920,
+			h: 1080,
+		},
+		behavior: { x: 'contain', y: 'contain' },
+		padding: { x: 0, y: 0 },
+		origin: { x: .5, y: .5},
+	},
+}
 
 	return (
 		<div className="editor-container">

@@ -113,8 +113,8 @@ body {
 	gap: 5px;
 	cursor: pointer;
 	/* transition: background-color 0.3s ease; */
-	width: 140px;
-	height:90px;
+	width: 120px;
+	height:76px;
 }
 
 .custom-button[data-isactive='true'] {
@@ -135,10 +135,10 @@ body {
 }
 
 .material-icons {
-	font-size: 1.6em;
+	font-size: 1.4em;
 }
 
 .button-label {
-	font-size: .7em;
+	font-size: .6em;
 	text-align: center;
 }
