@@ -1,5 +1,5 @@
 import { useSync } from '@tldraw/sync'
-import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLUiOverrides, TLUiToolsContextType, DefaultStylePanel} from 'tldraw'
+import { DefaultCanvas, Tldraw, TLCameraOptions, useEditor, track, TLUiOverrides, TLUiToolsContextType, DefaultStylePanel, } from 'tldraw'
 import { getBookmarkPreview } from '../getBookmarkPreview'
 import { multiplayerAssetStore } from '../multiplayerAssetStore'
 import { useEffect } from 'react'
@@ -87,15 +87,15 @@ const {
 	)
 })
 
+
 function Day1Editor() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
-		uri: `${WORKER_URL}/connect/test-room2`,
+		uri: `${WORKER_URL}/connect/day1-room`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
-	
 
 	return (
 		<div style={{ position: 'fixed', inset: 0 }}>
@@ -105,7 +105,7 @@ function Day1Editor() {
 				editor.registerExternalAssetHandler('url', getBookmarkPreview)
 
 				// Set the default tool to 'hand'
-				editor.setCurrentTool('hand')
+				// editor.setCurrentTool('hand')
 
 				// // Register the before change handler
 				// editor.sideEffects.registerBeforeChangeHandler('shape', ( next) => {
@@ -164,7 +164,7 @@ const CustomUi = track(() => {
 	const handleToolChange = (toolId: string) => {
 		if (editor.getCurrentToolId() === toolId) {
 		  // If the clicked tool is already active, switch to the Hand tool
-		  editor.setCurrentTool('hand')
+		  editor.setCurrentTool('select')
 		} else {
 		  // Otherwise, switch to the clicked tool
 		  editor.setCurrentTool(toolId)
@@ -175,7 +175,7 @@ const CustomUi = track(() => {
 		const handleKeyUp = (e: KeyboardEvent) => {
 			switch (e.key) {
 				case 'Escape': {
-					editor.setCurrentTool('hand')
+					editor.setCurrentTool('select')
 					break
 				}
 			}

@@ -13,7 +13,7 @@ const AppRouter: React.FC = () => {
     <Router>
         <Routes>
           <Route path="/" element={<Display />} />
-          <Route path="/Day1" element={<Day1Editor />} />
+          <Route path="/Day1Editor" element={<Day1Editor />} />
           <Route path="/Display" element={<Display />} />
           <Route path="/Master" element={<Master />} />
           <Route path="/Day0Viewer" element={<Day0Viewer />} />
