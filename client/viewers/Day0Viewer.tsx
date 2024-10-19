@@ -56,10 +56,6 @@ const {
 	},
 } = cameraOptions
 
-// const d = Vec.ToAngle({ x: w, y: h }) * (180 / Math.PI)
-// const colB = '#00000002'
-// const colA = '#0000001F'
-
 	return (
 		<div
 			style={{
@@ -68,7 +64,6 @@ const {
 				left: x,
 				width: w,
 				height: h,
-				// border: '1px dashed var(--color-text)',
 			}}
 		>
 			<div
