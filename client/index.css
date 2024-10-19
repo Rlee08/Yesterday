@@ -98,14 +98,14 @@ body {
 
 .custom-toolbar {
 	position: absolute;
-	bottom: 3vh;
+	bottom: 2vh;
 	left: 0px;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 8px;
-	gap: 30px;
+	gap: 20px;
 }
 
 .custom-button {
@@ -115,16 +115,16 @@ body {
 	border: 1px solid black;
 	border-radius: 100px;
 	font-family: 'Inter', sans-serif;
-	font-size: 24px;
+	font-size: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 5px;
+	gap: 4px;
 	cursor: pointer;
 	/* transition: background-color 0.3s ease; */
-	width: 200px;
-	height:70px;
+	width: 100px;
+	height:60px;
 }
 
 .custom-button[data-isactive='true'] {
@@ -171,7 +171,7 @@ body {
   
   .image-container img {
 	max-width: auto;
-	height:150px;
+	height:60px;
   }
 
 .display-section {
@@ -214,7 +214,7 @@ body {
 
 .grid-wrapper {
 	display: flex;
-	height: 88vh;
+	height: 90.9vh;
 	justify-content: space-between;
 	align-items: center;
 	grid-column-gap: 0px;
@@ -238,7 +238,7 @@ body {
 	padding-right: 20px;
 	padding-bottom: 20px;
 	padding-left: 20px;
-	background-color: hsla(0, 0.00%, 100.00%, 1.00);
+	background-color: rgb(255, 255, 255);
   }
 
   .tldraw-wrapper {
@@ -255,7 +255,7 @@ body {
 	padding-bottom: 0vh;
 	text-align: left;
 	font-weight: 500;
-	font-size: 2.5vh;
+	font-size: 2.3vh;
   }
 
   .grid-container h2 {
@@ -263,7 +263,7 @@ body {
 	color: rgb(0, 0, 0);
 	margin: 0;
 	padding: 2vh 6vh;
-	padding-top: 1vh;
+	padding-top: 2vh;
 	text-align: left;
 	font-weight: 500;
 	font-size: 1.5vh;
@@ -274,17 +274,19 @@ body {
 	color: rgb(0, 0, 0);
 	margin: 0;
 	padding: 3vh 6vh;
-	padding-bottom: 4vh;
+	padding-bottom: 3vh;
+	padding-right: 80h;
 	text-align: left;
 	font-weight: 500;
-	font-size: 3vh;
+	font-size: 2.3vh;
   }
 
 .tip-bg {
 	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 24px;
+	border-radius: 12px;
 	/* padding: 20px 30px; */
-	margin: 4vh 8vw;
+	margin: 2vh 2vh;
+	margin-right: 26vw;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -294,6 +296,27 @@ body {
 }
 
 .lower-bar {
-	height: 1vh;
+	height: .5vh;
 	background-color: #000000;
+}
+
+.bottom-bar {
+	background-color: rgb(255, 255, 255);
+	width: 100%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	grid-column-gap:100px;
+	padding:1.5vh;
+	padding-left: 10vw;
+	padding-bottom: 3vh;
+}
+
+.bottom-bar h1{
+	font-family: 'DM Mono', sans-serif;
+	color: rgb(0, 0, 0);
+	padding: 1vh;
+	text-align: left;
+	font-weight: 500;
+	font-size: 2.3vh;
 }

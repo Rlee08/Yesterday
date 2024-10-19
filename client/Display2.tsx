@@ -7,8 +7,8 @@ import { getBookmarkPreview } from './getBookmarkPreview'
 import { multiplayerAssetStore } from './multiplayerAssetStore'
 // import { CustomRenderer } from './CustomRenderer'
 // import { Day0Viewer, Day1Viewer } from './CustomViewers'
-// import day1EditorImage from '/public/day1editor.jpg'
-// import day0QR from '/public/day0viewer.jpg'
+import day1EditorImage from '/public/day1editor.jpg'
+import day0QR from '/public/day0viewer.jpg'
 import { useEffect } from 'react'
 
 // Where is our worker located? Configure this in `vite.config.ts`
@@ -121,10 +121,10 @@ export default function Display2() {
 
 			<focusedEditorContext.Provider value={{ focusedEditor, setFocusedEditor }}>
 			<div className="top-bar"> 
-				<h1>Play with the canvas using the laptop in front of you!</h1>
+				<h1>Feel free to play with the canvas using the laptop in front of you, or scan the QR codes below!</h1>
 			</div>
-			<div className="lower-bar"> 
-			</div>
+			{/* <div className="lower-bar"> 
+			</div> */}
 			<div className="grid-container">
 
 				<div className="grid-wrapper">
@@ -132,12 +132,24 @@ export default function Display2() {
 						<div className="tldraw-wrapper">
 							<LeftViewer/>
 						</div>
+						<div className="bottom-bar">
+								<h1>View a message from yesterday...</h1>
+								<div className="image-container" >
+									<img src= {day0QR} />
+								</div>
+						</div>
 					</div>
 					<div className="line"></div>
 					<div className="hero-split">
 						<div className="tldraw-wrapper">
 						{/* <h1>Focusing: {focusName}</h1> */}
 							<RightViewer/>
+						</div>
+						<div className="bottom-bar">
+								<h1>Leave a message for tomorrow!</h1>
+								<div className="image-container" >
+									<img src= {day1EditorImage} />
+								</div>
 						</div>
 					</div>
 					</div>
@@ -261,8 +273,8 @@ function LeftUi() {
 	return (
 		<div className="custom-layout">
 			<div className="tip-bg">
-				<h1>View a message from yesterday...</h1>
-				<h2>Fleet Library, 15 Westminster St.</h2>
+				{/* <h1>View a message from yesterday...</h1> */}
+				<h2>From Yesterday<br />Fleet Library, 15 Westminster St.</h2>
 			</div>
 		</div>
 	)
@@ -311,8 +323,8 @@ const CustomUi = track(() => {
 	return (
 		<div className="custom-layout">
 			<div className="tip-bg">
-				<h1>Leave a message for tomorrow!</h1>
-				<h2>Fleet Library, 15 Westminster St.</h2>
+				{/* <h1>Leave a message for tomorrow!</h1> */}
+				<h2>For Tomorrow<br />Fleet Library, 15 Westminster St.</h2>
 			</div>
 		  <div className="custom-toolbar">
 			<button
