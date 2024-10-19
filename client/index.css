@@ -98,7 +98,7 @@ body {
 
 .custom-toolbar {
 	position: absolute;
-	bottom: 5vh;
+	bottom: 3vh;
 	left: 0px;
 	width: 100%;
 	display: flex;
@@ -214,7 +214,7 @@ body {
 
 .grid-wrapper {
 	display: flex;
-	height: 100%;
+	height: 88vh;
 	justify-content: space-between;
 	align-items: center;
 	grid-column-gap: 0px;
@@ -251,8 +251,8 @@ body {
 	font-family: 'DM Mono', sans-serif;
 	color: rgb(0, 0, 0);
 	margin: 0;
-	padding: 4vh 6vh;
-	padding-bottom: 1vh;
+	padding: 2vh 6vh;
+	padding-bottom: 0vh;
 	text-align: left;
 	font-weight: 500;
 	font-size: 2.5vh;
@@ -262,11 +262,22 @@ body {
 	font-family: 'DM Mono', sans-serif;
 	color: rgb(0, 0, 0);
 	margin: 0;
-	padding: 4vh 6vh;
+	padding: 2vh 6vh;
 	padding-top: 1vh;
 	text-align: left;
 	font-weight: 500;
-	font-size: 2vh;
+	font-size: 1.5vh;
+  }
+
+  .top-bar h1 {
+	font-family: 'DM Mono', sans-serif;
+	color: rgb(0, 0, 0);
+	margin: 0;
+	padding: 3vh 6vh;
+	padding-bottom: 4vh;
+	text-align: left;
+	font-weight: 500;
+	font-size: 3vh;
   }
 
 .tip-bg {
@@ -275,4 +286,14 @@ body {
 	/* padding: 20px 30px; */
 	margin: 4vh 8vw;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar {
+	height: auto;
+	background-color: #f0f0f0;
+}
+
+.lower-bar {
+	height: 1vh;
+	background-color: #000000;
 }

@@ -120,10 +120,10 @@ export default function Display2() {
 		onPointerDown={() => setFocusedEditor(null)}>
 
 			<focusedEditorContext.Provider value={{ focusedEditor, setFocusedEditor }}>
-			<div className="line-container">
-
-
-
+			<div className="top-bar"> 
+				<h1>Play with the canvas using the laptop in front of you!</h1>
+			</div>
+			<div className="lower-bar"> 
 			</div>
 			<div className="grid-container">
 
