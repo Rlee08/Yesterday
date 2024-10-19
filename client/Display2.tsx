@@ -86,6 +86,43 @@ const {
 	)
 })
 
+const BoundsDisplay1 = track(() => {
+	const editor = useEditor()
+	const cameraOptions = editor.getCameraOptions()
+	
+	if (!cameraOptions.constraints) return null
+	
+	const {
+		constraints: {
+			bounds: { x, y, w, h },
+		},
+	} = cameraOptions
+	
+		return (
+			<div
+				style={{
+					position: 'absolute',
+					top: y,
+					left: x,
+					width: w,
+					height: h,
+				}}
+			>
+				<div
+					style={{
+						position: 'absolute',
+						top: y,
+						left: x,
+						width: '100%',
+						height: '100%',
+						backgroundImage: `url(./day2bg.jpg)`,
+						backgroundSize: 'cover',
+						backgroundPosition: 'center',
+					}}
+				></div>
+			</div>
+		)
+	})
 
 
 const focusedEditorContext = createContext(
@@ -121,7 +158,7 @@ export default function Display2() {
 
 			<focusedEditorContext.Provider value={{ focusedEditor, setFocusedEditor }}>
 			<div className="top-bar"> 
-				<h1>Feel free to play with the canvas using the laptop in front of you, or scan the QR codes below!</h1>
+				<h1>Feel free to leave a message using the laptop in front of you, or scan the QR codes below!</h1>
 			</div>
 			{/* <div className="lower-bar"> 
 			</div> */}
@@ -238,7 +275,7 @@ function RightViewer() {
 			}}
 			components={{
 				Canvas: DefaultCanvas,
-				OnTheCanvas: BoundsDisplay0,
+				OnTheCanvas: BoundsDisplay1,
 				// ContextMenu: null,
 				// ActionsMenu: null,
 				// HelpMenu: null,
@@ -324,7 +361,7 @@ const CustomUi = track(() => {
 		<div className="custom-layout">
 			<div className="tip-bg">
 				{/* <h1>Leave a message for tomorrow!</h1> */}
-				<h2>For Tomorrow<br />Fleet Library, 15 Westminster St.</h2>
+				<h2>For Tomorrow<br />Campus Center, 75 Waterman St.</h2>
 			</div>
 		  <div className="custom-toolbar">
 			<button

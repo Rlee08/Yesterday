@@ -78,7 +78,7 @@ const {
 					left: x,
 					width: '100%',
 					height: '100%',
-					backgroundImage: `url(./day1.jpg)`,
+					backgroundImage: `url(./day2bg.jpg)`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 				}}
@@ -92,7 +92,7 @@ function Day1Editor() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
-		uri: `${WORKER_URL}/connect/day1-room`,
+		uri: `${WORKER_URL}/connect/day2-room`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
@@ -149,7 +149,7 @@ function Day1Editor() {
 				CursorChatBubble: null,
 			}}
 			cameraOptions={CAMERA_OPTIONS}
-			// hideUi
+			hideUi
 			overrides={overrides}
 			>
 			<CustomUi />

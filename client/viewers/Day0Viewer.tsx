@@ -86,7 +86,7 @@ function Day0Viewer() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
-		uri: `${WORKER_URL}/connect/day0-room`,
+		uri: `${WORKER_URL}/connect/day1-room`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
