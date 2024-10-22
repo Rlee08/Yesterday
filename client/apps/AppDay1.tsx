@@ -78,7 +78,7 @@ const {
 					left: x,
 					width: '100%',
 					height: '100%',
-					backgroundImage: `url(./day2bg.jpg)`,
+					backgroundImage: `url(./day3insidebg.jpg)`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 				}}
@@ -92,7 +92,7 @@ function Day1Editor() {
 	// Create a store connected to multiplayer.
 	const store = useSync({
 		// We need to know the websockets URI...
-		uri: `${WORKER_URL}/connect/day2-room`,
+		uri: `${WORKER_URL}/connect/day3-room`,
 		// ...and how to handle static assets like images & videos
 		assets: multiplayerAssetStore,
 	})
